@@ -1,0 +1,36 @@
+# Model configuration
+model:
+  type: "vit_t"                     # SAM model type
+  checkpoint: "./pre_weight/tinysam.pth"
+  resume_run: False
+  resume_pth: ""
+
+# Dataset configuration
+data:
+  train_image_dir : "data/col/train/tp"
+  train_mask_dir : "data/col/train/gt"
+  
+  val_image_dir : "data/col/val/tp"
+  val_mask_dir : "data/col/val/gt"
+#  train_image_dir: "data/pscc/fake"
+#  train_mask_dir: "data/pscc/mask"
+#  val_image_dir: "data/pscc-val/pscc"
+#  val_mask_dir: "data/pscc-val/mask"
+
+# Edge generator parameters
+edge_generator:
+  kernel_size: 7
+
+# Training hyperparameters
+training:
+  batch_size: 16
+  num_epochs: 10
+  learning_rate: 1e-4
+  num_workers: 2
+  val_batch_size: 1
+  #test_batch_size: 2
+
+# Output
+output:
+  save_best_path: "sam_revi_best.pth"
+  save_final_path: "sam_revi_final.pth"

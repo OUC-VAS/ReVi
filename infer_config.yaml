@@ -1,0 +1,10 @@
+model:
+  type: "vit_t"
+  checkpoint: "pre_pro.pth"
+data:
+  input_folder: "data/imd/all"
+  output_folder: "data/result"
+  gt_folder: "data/imd/gt"
+inference:
+  point: "None"
+device: "cuda"
