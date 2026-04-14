@@ -1,6 +1,6 @@
 import torch.nn as nn
 from peft import LoraConfig, get_peft_model
-from freq.RPCA_frequencyselection import replace_with_parallel_transformer
+from revi.revi import replace_with_parallel_transformer
 
 def setup_lora_for_sam(model, lora_r=8, lora_alpha=32, lora_dropout=0.1):
     # add lora to target layers
