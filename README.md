@@ -38,12 +38,53 @@ pip install -r requirements.txt
 
 ## 📦 Prepare for your dataset
 
+**Dataset.**
 
+1.   Download your datasets, such as [PSCC](https://github.com/proteus1991/PSCC-Net) and put them on a hard drive with plenty of memory.
+
+2. Download other datasets you like, such as [CASIAv2](https://github.com/SunnyHaze/CASIA2.0-Corrected-Groundtruth), [CASIAv1](https://github.com/namtpham/casia1groundtruth), [Columbia](https://www.ee.columbia.edu/ln/dvmm/downloads/authsplcuncmp/), [Coverage](https://github.com/wenbihan/coverage), [NIST16](https://mig.nist.gov/MFC/PubData/Resources.html), [IMD20](https://staff.utia.cas.cz/novozada/db/IMD2020.zip).  
+
+**Dataset preprocess.**
+
+1. After downloading is complete, you should have two subdirectories, one for images and the other for groundtruth.
+   ```
+   .
+   └── data
+       ├── image
+       └── gt
+   ```
+
+2. We recommend renaming the images and groundtruth in your dataset to have the same filenames and extensions. For example, in your CASIA dataset, you have a set of files as follows: 
+   ```commandline
+   Sp_D_CND_A_pla0005_pla0023_0281.jpg     Sp_D_CND_A_pla0005_pla0023_0281_gt.png
+   ```
+   After modification, the filenames when running the code should be:
+   ```commandline
+   Sp_D_CND_A_pla0005_pla0023_0281.png     Sp_D_CND_A_pla0005_pla0023_0281.png
+   ```
+
+3. For some incorrectly annotated data, we recommend ignoring those images or using their corrected versions, such as in [CASIAv2](https://github.com/SunnyHaze/CASIA2.0-Corrected-Groundtruth).
+ 
  
 
 ## 🏋️ Training
 
+1. Before training, you need to download the [pre-trained weights](https://github.com/xinghaochen/TinySAM) for TinySAM and place them in the `pre_weight` folder. Alternatively, you can modify the configuration in the `train_config.yaml` file to specify a custom path.
 
+
+2. Then you should put your train and val dataset to the `train_image/mask_dir` `val_image/mask_dir`
+
+
+3. After you confirm the config in `train_config.yaml`, then you can use the below instruction and train your model: 
+
+   ```python
+    python train.py --config train_config.yaml
+   ```
+
+4. After training is complete, the best-performing weight file and the training loss plot will be stored in the root directory.
+
+
+5. Since different datasets have different rules for matching images and groundtruth, we have included several common mapping methods. You can review and modify these mappings in `train.py`. **However, we strongly recommend that your images and groundtruth have the same filenames and extensions.**
 
 
 ## 🏃 Visualization and Testing
